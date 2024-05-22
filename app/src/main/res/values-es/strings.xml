@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">HoroscApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hola fragmento en blanco</string>
+
+    <!--    BottomBar-->
+    <string name="horoscope">Horóscopo</string>
+    <string name="palmistry">Quiromancia</string>
+    <string name="luck">Suerte</string>
+
+    <!--    Horoscope-->
+    <string name="aries">Aries</string>
+    <string name="taurus">Tauro</string>
+    <string name="gemini">Géminis</string>
+    <string name="cancer">Cáncer</string>
+    <string name="leo">Leo</string>
+    <string name="virgo">Virgo</string>
+    <string name="libra">Libra</string>
+    <string name="scorpio">Escorpio</string>
+    <string name="sagittarius">Sagitario</string>
+    <string name="capricorn">Capricornio</string>
+    <string name="aquarius">Acuario</string>
+    <string name="pisces">Piscis</string>
+
+    <!--    Luck-->
+    <string name="share">Compartir</string>
+
+    <string name="luck_0">"Una nueva oportunidad traerá un éxito inesperado a tu vida."</string>
+    <string name="luck_1">"Conocerás a alguien que cambiará tu vida para mejor."</string>
+    <string name="luck_2">"Te espera un emocionante viaje en un futuro cercano."</string>
+    <string name="luck_3">"Un proyecto creativo te llevará al reconocimiento y la satisfacción."</string>
+    <string name="luck_4">"Superarás un desafío significativo y saldrás más fuerte."</string>
+    <string name="luck_5">"La abundancia financiera está en el horizonte; mantén la paciencia."</string>
+    <string name="luck_6">"Un amigo perdido hace tiempo se reconectará contigo pronto."</string>
+    <string name="luck_7">"Una gran decisión te llevará al crecimiento personal y la felicidad."</string>
+    <string name="luck_8">"Un sueño que has tenido durante años finalmente se hará realidad."</string>
+    <string name="luck_9">"Confía en tu intuición; te guiará hacia el éxito."</string>
+    <string name="luck_10">"Un talento oculto emergerá, trayendo nuevas oportunidades."</string>
+    <string name="luck_11">"Un cambio en tu rutina te llevará a aventuras inesperadas."</string>
+    <string name="luck_12">"Alguien de tu pasado jugará un papel significativo en tu futuro."</string>
+    <string name="luck_13">"Un encuentro fortuito te llevará a una conexión profunda y duradera."</string>
+    <string name="luck_14">"Recibirás un regalo sorprendente que traerá alegría a tu vida."</string>
+    <string name="luck_15">"Un viaje inesperado te llevará a una transformación personal."</string>
+    <string name="luck_16">"Tu arduo trabajo se verá recompensado con una recompensa bien merecida."</string>
+    <string name="luck_17">"Un nuevo capítulo en tu vida comenzará, lleno de posibilidades."</string>
+    <string name="luck_18">"Confía en el tiempo de los eventos; todo sucede por una razón."</string>
+    <string name="luck_19">"Acepta el cambio que viene hacia ti; te llevará a grandes cosas."</string>
+    <string name="luck_20">"Una pizca de suerte te llevará hacia un camino de prosperidad."</string>
+    <string name="luck_21">"Una oportunidad inesperada llamará a tu puerta; prepárate para aprovecharla."</string>
+    <string name="luck_22">"Un período de crecimiento personal y autodescubrimiento está en el horizonte."</string>
+    <string name="luck_23">"Encontrarás inspiración en los lugares más improbables."</string>
+    <string name="luck_24">"Una nueva amistad traerá risas y alegría a tu vida."</string>
+    <string name="luck_25">"Suscríbete a AristiDevs en Youtube."</string>
+    <string name="luck_26">"Una decisión importante te llevará a un futuro más brillante."</string>
+    <string name="luck_27">"Un deseo que has tenido por mucho tiempo finalmente se manifestará."</string>
+    <string name="luck_28">"Descubrirás una nueva pasión que encenderá tu alma."</string>
+    <string name="luck_29">"Un desafío que enfrentas ahora se convertirá en un escalón hacia el éxito."</string>
+    <string name="luck_30">"Planes de viaje inesperados ampliarán tus horizontes."</string>
+    <string name="luck_31">"Un giro sorprendente del destino traerá bendiciones inesperadas."</string>
+</resources>
