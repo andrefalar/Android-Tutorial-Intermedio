@@ -14,5 +14,8 @@ Para clonar y ejecutar esta aplicación en tu entorno local, sigue estos pasos:
 
 1. **Clona el repositorio**:
    ```bash
-   git clone https://github.com/tu_usuario/horoscapp.git
+   git clone https://github.com/andrefalar/Android-Tutorial-Intermedio
    ```
+   
+
+
