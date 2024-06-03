@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/horoscopeFragment"
-        android:title="@string/horoscope"
-        android:icon="@drawable/ic_horoscope"/>
+        android:icon="@drawable/ic_horoscope"
+        android:title="@string/horoscope" />
 
     <item
         android:id="@+id/luckFragment"
-        android:title="@string/luck"
-        android:icon="@drawable/ic_cards"/>
+        android:icon="@drawable/ic_cards"
+        android:title="@string/luck" />
 
     <item
         android:id="@+id/palmistryFragment"
-        android:title="@string/palmistry"
-        android:icon="@drawable/ic_hand"/>
+        android:icon="@drawable/ic_hand"
+        android:title="@string/palmistry" />
 </menu>

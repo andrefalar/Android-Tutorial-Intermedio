@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.andrefalar.horoscapp.databinding.FragmentLuckBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LuckFragment : Fragment() {
 
     private var _binding: FragmentLuckBinding? = null
@@ -17,7 +19,7 @@ class LuckFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentLuckBinding.inflate(layoutInflater, container,false)
+        _binding = FragmentLuckBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 

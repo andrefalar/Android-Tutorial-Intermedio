@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.andrefalar.horoscapp.R
 import com.andrefalar.horoscapp.databinding.FragmentPalmistryBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+// indicador para inyeccion de dependecias para componentes
+@AndroidEntryPoint
 class PalmistryFragment : Fragment() {
 
     private var _pinding: FragmentPalmistryBinding? = null
-    private val pinding get() =_pinding!!
+    private val pinding get() = _pinding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
