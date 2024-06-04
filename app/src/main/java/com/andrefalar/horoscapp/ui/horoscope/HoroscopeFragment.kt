@@ -10,7 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.andrefalar.horoscapp.databinding.FragmentHoroscopeBinding
+import com.andrefalar.horoscapp.ui.horoscope.adapter.HoroscopeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -21,6 +23,9 @@ class HoroscopeFragment : Fragment() {
 
     // Conecta el Fragment con el ViewModel correspondiente
     private val horoscopeViewModel by viewModels<HoroscopeViewModel>()
+
+    // Declaramos e importamos adapter
+    private lateinit var horoscopeAdapter: HoroscopeAdapter
 
     // Creamos el binding del fragment (_binding indica que debe ser privada)
     private var _binding: FragmentHoroscopeBinding? = null
@@ -44,17 +49,31 @@ class HoroscopeFragment : Fragment() {
     }
 
     private fun initUi() {
+        initRecyclerView()
         initUIState()
     }
 
+    // Inicializa el adapter
+    private fun initRecyclerView() {
+        horoscopeAdapter = HoroscopeAdapter()
+
+        // configura el RecyclerView del layout
+        binding.rvHoroscope.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = horoscopeAdapter
+        }
+    }
+
+    // inicializa y maneja el estado de la interfaz de usuario (UI) en el fragmento
     private fun initUIState() {
         // Creamos esta corutina en especifico ya que se engancha al ciclo de vida del fragmento
         lifecycleScope.launch {
             // Cuando empiece el ciclo de vida...
-            repeatOnLifecycle(Lifecycle.State.STARTED){
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 // Suscribete al StateFlow del ViewModel
-                horoscopeViewModel.horoscope.collect{
-                    Log.i("Aris",it.toString())
+                horoscopeViewModel.horoscope.collect {
+                    // CAMBIOS EN HOROSCOPE
+                    horoscopeAdapter.updateList(it)
                 }
             }
         }
