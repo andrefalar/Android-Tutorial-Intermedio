@@ -1,16 +1,16 @@
 package com.andrefalar.horoscapp.ui.horoscope
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.andrefalar.horoscapp.databinding.FragmentHoroscopeBinding
 import com.andrefalar.horoscapp.ui.horoscope.adapter.HoroscopeAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,13 +53,18 @@ class HoroscopeFragment : Fragment() {
         initUIState()
     }
 
-    // Inicializa el adapter
+    // Inicializa el adapter del RecyclerView
     private fun initRecyclerView() {
-        horoscopeAdapter = HoroscopeAdapter()
+        // Al incializar el adapter pasamos una lambda que nos indique que elemento fue selecionado
+        horoscopeAdapter = HoroscopeAdapter(onItemSelected = {
+            // Devuelven el item que fue seleccionado (it hace referencia al item en el ViewHolder)
+            Toast.makeText(context, getString(it.name),Toast.LENGTH_LONG).show()
+        })
 
         // configura el RecyclerView del layout
         binding.rvHoroscope.apply {
-            layoutManager = LinearLayoutManager(context)
+            // Para que se muestre en cuadricula
+            layoutManager = GridLayoutManager(context, 2)
             adapter = horoscopeAdapter
         }
     }
@@ -72,7 +77,7 @@ class HoroscopeFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 // Suscribete al StateFlow del ViewModel
                 horoscopeViewModel.horoscope.collect {
-                    // CAMBIOS EN HOROSCOPE
+                    // Actualiza el adapter deacuerdo al modelo de datos del ViewModel
                     horoscopeAdapter.updateList(it)
                 }
             }

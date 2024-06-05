@@ -1,6 +1,7 @@
 package com.andrefalar.horoscapp.ui.horoscope
 
 import androidx.lifecycle.ViewModel
+import com.andrefalar.horoscapp.data.providers.HoroscopeProvider
 import com.andrefalar.horoscapp.domain.model.HoroscopeInfo
 import com.andrefalar.horoscapp.domain.model.HoroscopeInfo.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,7 +11,7 @@ import javax.inject.Inject
 
 // indicador para inyeccion de dependecias en ViewModels
 @HiltViewModel
-class HoroscopeViewModel @Inject constructor():ViewModel(){
+class HoroscopeViewModel @Inject constructor(private val horoscopeProvider: HoroscopeProvider):ViewModel(){
 
     /*
     Creamos un stateflow para una comunicacion constante entre el fragment y el viewmodel, ademas
@@ -24,8 +25,7 @@ class HoroscopeViewModel @Inject constructor():ViewModel(){
 
     // Este metodo se llama justo cuando se crea el ViewModel
     init {
-        _horoscope.value = listOf(
-            Aries, Taurus, Gemini
-        )
+        //
+        _horoscope.value = horoscopeProvider.getHoroscopes()
     }
 }

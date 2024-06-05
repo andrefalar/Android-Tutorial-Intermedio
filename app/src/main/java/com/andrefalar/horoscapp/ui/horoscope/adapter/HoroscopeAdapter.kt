@@ -6,11 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.andrefalar.horoscapp.R
 import com.andrefalar.horoscapp.domain.model.HoroscopeInfo
 
-// Recibe una lista del modelo de datos correspondiente, pero inicia vacia
-class HoroscopeAdapter(private var horoscopeList: List<HoroscopeInfo> = emptyList()) :
+/*
+Recibe una lista del modelo de datos correspondiente, pero inicia vacia.
+Tambien recibe un funcion lambda para saber si el item fue seleccionado o no
+ */
+class HoroscopeAdapter(
+    private var horoscopeList: List<HoroscopeInfo> = emptyList(),
+    private val onItemSelected: (HoroscopeInfo) -> Unit
+) :
     RecyclerView.Adapter<HoroscopeViewHolder>() {
 
-    fun updateList(list:List<HoroscopeInfo>){
+    // actualiza el listado
+    fun updateList(list: List<HoroscopeInfo>) {
         horoscopeList = list
         notifyDataSetChanged()
     }
@@ -28,6 +35,6 @@ class HoroscopeAdapter(private var horoscopeList: List<HoroscopeInfo> = emptyLis
 
     // Se encarga de decirle al ViewHolder lo que tiene que pintar
     override fun onBindViewHolder(holder: HoroscopeViewHolder, position: Int) {
-        holder.render(horoscopeList[position])
+        holder.render(horoscopeList[position], onItemSelected)
     }
 }
