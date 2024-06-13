@@ -10,8 +10,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.andrefalar.horoscapp.databinding.FragmentHoroscopeBinding
+import com.andrefalar.horoscapp.domain.model.HoroscopeInfo
+import com.andrefalar.horoscapp.domain.model.HoroscopeInfo.*
+import com.andrefalar.horoscapp.domain.model.HoroscopeModel
 import com.andrefalar.horoscapp.ui.horoscope.adapter.HoroscopeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -57,8 +61,26 @@ class HoroscopeFragment : Fragment() {
     private fun initRecyclerView() {
         // Al incializar el adapter pasamos una lambda que nos indique que elemento fue selecionado
         horoscopeAdapter = HoroscopeAdapter(onItemSelected = {
-            // Devuelven el item que fue seleccionado (it hace referencia al item en el ViewHolder)
-            Toast.makeText(context, getString(it.name),Toast.LENGTH_LONG).show()
+            val type = when(it){
+                Aquarius -> HoroscopeModel.Aquarius
+                Aries -> HoroscopeModel.Aries
+                Cancer -> HoroscopeModel.Cancer
+                Capricorn -> HoroscopeModel.Capricorn
+                Gemini -> HoroscopeModel.Gemini
+                Leo -> HoroscopeModel.Leo
+                Libra -> HoroscopeModel.Libra
+                Pisces -> HoroscopeModel.Pisces
+                Sagittarius -> HoroscopeModel.Sagittarius
+                Scorpio -> HoroscopeModel.Scorpio
+                Taurus -> HoroscopeModel.Taurus
+                Virgo -> HoroscopeModel.Virgo
+            }
+
+            // Navega hacia el HoroscopeDetail
+            findNavController().navigate(
+                // ademas le enviamos el type a traves de saveArgs
+            HoroscopeFragmentDirections.actionHoroscopeFragmentToHoroscopeDetailActivity(type)
+            )
         })
 
         // configura el RecyclerView del layout

@@ -25,7 +25,7 @@ class HoroscopeViewModel @Inject constructor(private val horoscopeProvider: Horo
 
     // Este metodo se llama justo cuando se crea el ViewModel
     init {
-        //
+        // Asigna los horoscopos al stateFlow
         _horoscope.value = horoscopeProvider.getHoroscopes()
     }
 }
