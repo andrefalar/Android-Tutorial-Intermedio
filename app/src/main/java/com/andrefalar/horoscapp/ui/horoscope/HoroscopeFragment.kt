@@ -99,7 +99,7 @@ class HoroscopeFragment : Fragment() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 // Suscribete al StateFlow del ViewModel
                 horoscopeViewModel.horoscope.collect {
-                    // Actualiza el adapter deacuerdo al modelo de datos del ViewModel
+                    // Actualiza el adapter de acuerdo al modelo de datos del ViewModel
                     horoscopeAdapter.updateList(it)
                 }
             }

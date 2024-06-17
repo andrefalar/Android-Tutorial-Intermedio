@@ -8,7 +8,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.navArgs
-import com.andrefalar.horoscapp.R
 import com.andrefalar.horoscapp.databinding.ActivityHoroscopeDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -28,8 +27,8 @@ class HoroscopeDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHoroscopeDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        // cargamos datos traido de otra pantalla
-        args.type
+        // Obtener horoscopo del signo seleccionado
+        horoscopeDetailViewModel.getHoroscope(args.type.name)
         initUI()
     }
 
@@ -46,7 +45,7 @@ class HoroscopeDetailActivity : AppCompatActivity() {
                     when (it) {
                         HoroscopeDetailState.Loading -> loadingState()
                         is HoroscopeDetailState.Error -> errorState()
-                        is HoroscopeDetailState.Success -> successState()
+                        is HoroscopeDetailState.Success -> successState(it)
                     }
                 }
             }
@@ -58,9 +57,11 @@ class HoroscopeDetailActivity : AppCompatActivity() {
     }
 
     private fun errorState(){
-
+        binding.pbDetail.isVisible = false
     }
-    private fun successState(){
-
+    private fun successState(state: HoroscopeDetailState.Success) {
+        binding.pbDetail.isVisible = false
+        binding.tvDetailTitle.text = state.sign
+        binding.tvDetailBody.text = state.prediction
     }
 }
