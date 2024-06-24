@@ -2,6 +2,7 @@ package com.andrefalar.horoscapp.ui.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.andrefalar.horoscapp.domain.model.HoroscopeModel
 import com.andrefalar.horoscapp.domain.usecase.GetPredictionUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -21,8 +22,10 @@ class HoroscopeDetailViewModel @Inject constructor(private val getPredictionUseC
     // Se declara una variable `state` que expone un flujo de estado inmutable a otras clases
     val state: StateFlow<HoroscopeDetailState> = _state
 
+    lateinit var  horoscope:HoroscopeModel
 
-    fun getHoroscope(sign: String) {
+    fun getHoroscope(sign: HoroscopeModel) {
+        horoscope = sign
         // Ejecuta una corutina en el ViewModel
         viewModelScope.launch {
             // cambia el estado del Detail a Loading
@@ -30,11 +33,11 @@ class HoroscopeDetailViewModel @Inject constructor(private val getPredictionUseC
             // Selecciona el hilo que se emplea para  operaciones de entrada/salida (I/O) y lo asigna a result
             val result = withContext(Dispatchers.IO) {
                 // Utiliza el metodo invoke del UseCase
-                getPredictionUseCase(sign)
+                getPredictionUseCase(sign.name)
             }
 
             if (result!=null){
-                _state.value = HoroscopeDetailState.Success(result.horoscope, result.sign)
+                _state.value = HoroscopeDetailState.Success(result.horoscope, result.sign, horoscope)
             } else {
                 _state.value = HoroscopeDetailState.Error("Ha ocurrido un error, intentelo mas tarde.")
             }
