@@ -1,6 +1,8 @@
 package com.andrefalar.horoscapp.data.network
 
+import com.andrefalar.horoscapp.BuildConfig.BASE_URL
 import com.andrefalar.horoscapp.data.RepositoryImpl
+import com.andrefalar.horoscapp.data.core.interceptor.AuthInterceptor
 import com.andrefalar.horoscapp.domain.Repository
 import dagger.Module
 import dagger.Provides
@@ -22,7 +24,7 @@ object NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit
             .Builder()
-            .baseUrl("https://newastro.vercel.app/")
+            .baseUrl(BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -30,7 +32,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient():OkHttpClient{
+    fun provideOkHttpClient(authInterceptor: AuthInterceptor):OkHttpClient{
 
         // crear interceptor
         val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -38,6 +40,7 @@ object NetworkModule {
         return OkHttpClient
             .Builder()
             .addInterceptor(interceptor)
+            .addInterceptor(authInterceptor)
             .build()
     }
 
