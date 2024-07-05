@@ -1,6 +1,7 @@
 package com.andrefalar.horoscapp.ui.luck
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,8 +15,10 @@ import androidx.core.animation.doOnEnd
 import androidx.core.view.isVisible
 import com.andrefalar.horoscapp.R
 import com.andrefalar.horoscapp.databinding.FragmentLuckBinding
+import com.andrefalar.horoscapp.ui.providers.RandomCardProvider
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Random
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -24,14 +27,52 @@ class LuckFragment : Fragment() {
     private var _binding: FragmentLuckBinding? = null
     private val binding get() = _binding!!
 
+    //Injectamos el provider para la informacion de las cartas
+    @Inject
+    lateinit var  randomCardProvider: RandomCardProvider
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
     }
 
     private fun initUI() {
+        preparePrediction()
         initListeners()
     }
+
+    // configura la informacion de la "prediccion"
+    private fun preparePrediction() {
+        // llama a mi provider junto a la funcion que genera la prediccion
+        val luck = randomCardProvider.getLucky()
+        // Esto se pone porque estamos seguros que no sera nulo
+        luck?.let {itLuck ->
+            val predictionTxt = getString(itLuck.text)
+            binding.tvLucky.text = predictionTxt
+            binding.ivLuckyCard.setImageResource(itLuck.image)
+            binding.tvShare.setOnClickListener { shareResult(predictionTxt) }
+        }
+    }
+
+    // Definición de una función privada llamada 'shareResult' que toma un argumento 'prediction' de tipo String.
+    private fun shareResult(prediction:String) {
+
+        // Creación de un Intent para enviar datos.
+        val sendIntent: Intent = Intent().apply {
+            // Configura la acción del Intent como una acción de envío.
+            action = Intent.ACTION_SEND
+            // Agrega el texto (prediction) al Intent como un extra con la clave 'Intent.EXTRA_TEXT'.
+            putExtra(Intent.EXTRA_TEXT, prediction)
+            // Define el tipo de contenido que se va a enviar, en este caso texto plano.
+            type = "text/plain"
+        }
+
+        // Crea un Intent de tipo chooser (selector) que permite al usuario elegir una aplicación para compartir.
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        // Inicia una actividad con el Intent de compartir.
+        startActivity(shareIntent)
+    }
+
 
     private fun initListeners() {
             binding.ivRoulette.setOnClickListener { spinRoulette() }
@@ -125,6 +166,8 @@ class LuckFragment : Fragment() {
         // ejecuta la animacion
         binding.preview.startAnimation(disappearAnimation)
         binding.prediction.startAnimation(appearAnimation)
+
+
     }
 
 
