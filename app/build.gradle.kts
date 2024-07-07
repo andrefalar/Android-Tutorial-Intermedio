@@ -54,6 +54,7 @@ dependencies {
     val navVersion = "2.7.1"
     val daggerHiltVersion = "2.48"
     val retrofitVersion = "2.9.0"
+    val cameraxVersion = "1.2.3"
 
     // NavComponent
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
@@ -68,6 +69,12 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:$retrofitVersion")
     implementation ("com.squareup.okhttp3:logging-interceptor:4.3.1")
 
+    // CameraX
+    implementation("androidx.camera:camera-core:$cameraxVersion")
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+    implementation("androidx.camera:camera-view:$cameraxVersion")
+    implementation("androidx.camera:camera-extensions:$cameraxVersion")
 
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
